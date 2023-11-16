@@ -21,6 +21,7 @@ final ResultsPopular results;
           alignment: Alignment.center,
           children: [
             MovieItemWidget(
+              ableNavigate: true,
               id: results.id.toString(),
               imageNetwork: "${Constants.basicImage}${results.posterPath}",
               heightImage: 217,
@@ -54,6 +55,7 @@ class PopularChildMovie extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
         MovieItemWidget(
+          ableNavigate: true,
             bookmarkVisible: true,
             title: results.title.toString(),
             imageNetwork: "${Constants.basicImage}${results.posterPath}",

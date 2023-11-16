@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:movie/pages/home/widgets/movie_item_widget.dart';
 
 import '../../../../model/home_view_mode/details_movie_model.dart';
 import 'genre_item.dart';
@@ -23,42 +24,16 @@ class DetailsMovieItem extends StatelessWidget {
     ThemeData theme = Theme.of(context);
     return SizedBox(
       height: mediaQuery.height * 0.230,
-
       child: Row(
         children: [
-          Stack(
-            alignment: Alignment.topLeft,
-            children: [
-              ClipRRect(
-                borderRadius: BorderRadius.circular(4),
-                child: Image.network(
-                  imageNetwork,
-                  height: mediaQuery.height * 0.230,
-                  width: mediaQuery.width * 0.34,
-                  fit: BoxFit.cover,
-                ),
-              ),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Stack(
-                    alignment: const Alignment(0, -0.5),
-                    children: [
-                      Image.asset(
-                        "assets/icons/Icon awesome-bookmark.png",
-                        color: const Color(0xff514F4F),
-                      ),
-                      const Icon(
-                        Icons.add,
-                        color: Colors.white,
-                        size: 20,
-                      )
-                    ],
-                  ),
-                ],
-              ),
-            ],
+          MovieItemWidget(
+            id: "",
+            title: "",
+            bookmarkVisible: true,
+            heightImage: mediaQuery.height * 0.230,
+            imageNetwork: imageNetwork,
+            ableNavigate: false,
+            widthImage: mediaQuery.width * 0.34,
           ),
           Expanded(
             child: Padding(
