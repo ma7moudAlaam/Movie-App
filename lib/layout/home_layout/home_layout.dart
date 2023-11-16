@@ -20,6 +20,7 @@ class _HomeLayoutState extends State<HomeLayout> {
   @override
   Widget build(BuildContext context) {
     ThemeData theme = Theme.of(context);
+
     return Scaffold(
       backgroundColor: theme.colorScheme.background,
       bottomNavigationBar: BottomNavigationBar(
