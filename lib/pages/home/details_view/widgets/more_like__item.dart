@@ -27,6 +27,7 @@ class MoreLikeItem extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             MovieItemWidget(
+              ableNavigate: true,
               id: results.id.toString(),
               bookmarkVisible: true,
               title: results.title.toString(),

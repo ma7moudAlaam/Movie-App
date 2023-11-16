@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 import '../details_view/details_view.dart';
 
-class MovieItemWidget extends StatelessWidget {
+class MovieItemWidget extends StatefulWidget {
   const MovieItemWidget(
       {super.key,
       required this.bookmarkVisible,
@@ -12,6 +12,7 @@ class MovieItemWidget extends StatelessWidget {
       required this.title,
       required this.heightImage,
       required this.imageNetwork,
+      required this.ableNavigate,
       required this.widthImage});
 
   final String imageNetwork;
@@ -20,35 +21,37 @@ class MovieItemWidget extends StatelessWidget {
   final String title;
   final String id;
   final bool bookmarkVisible;
+  final bool ableNavigate;
+
+  @override
+  State<MovieItemWidget> createState() => _MovieItemWidgetState();
+}
+
+class _MovieItemWidgetState extends State<MovieItemWidget> {
+  bool saved = false;
 
   @override
   Widget build(BuildContext context) {
     var mediaQuery = MediaQuery.of(context).size;
-    return GestureDetector(
-      onTap: () {
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => DetailsView(
-                title: title,
-                id: id,
-              ),
-            ));
-      },
-      child: bookmarkVisible == true
-          ? Stack(
-              alignment: Alignment.topLeft,
-              children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(4),
-                  child: Image.network(
-                    imageNetwork,
-                    height: heightImage,
-                    width: widthImage,
-                    fit: BoxFit.cover,
-                  ),
-                ),
-                Column(
+    ThemeData theme = Theme.of(context);
+    return widget.bookmarkVisible == true
+        ? Stack(
+            alignment: Alignment.topLeft,
+            children: [
+              CustomClipRRect(
+                  ableNavigate: widget.ableNavigate,
+                  imageNetwork: widget.imageNetwork,
+                  widthImage: widget.widthImage,
+                  heightImage: widget.heightImage,
+                  id: widget.id,
+                  title: widget.title),
+              GestureDetector(
+                onTap: () {
+                  setState(() {
+                    saved = !saved;
+                  });
+                },
+                child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -57,20 +60,70 @@ class MovieItemWidget extends StatelessWidget {
                       children: [
                         Image.asset(
                           "assets/icons/Icon awesome-bookmark.png",
-                          color: const Color(0xff514F4F),
+                          color: saved == true
+                              ? theme.colorScheme.primary
+                              : Color(0xff514F4F),
                         ),
-                        const Icon(
-                          Icons.add,
-                          color: Colors.white,
-                          size: 20,
-                        )
+                        saved == true
+                            ? const Icon(
+                                Icons.check,
+                                color: Colors.white,
+                                size: 20,
+                              )
+                            : const Icon(
+                                Icons.add,
+                                color: Colors.white,
+                                size: 20,
+                              )
                       ],
                     ),
                   ],
                 ),
-              ],
-            )
-          : ClipRRect(
+              ),
+            ],
+          )
+        : CustomClipRRect(
+            ableNavigate: widget.ableNavigate,
+            imageNetwork: widget.imageNetwork,
+            widthImage: widget.widthImage,
+            heightImage: widget.heightImage,
+            id: widget.id,
+            title: widget.title);
+  }
+}
+
+class CustomClipRRect extends StatelessWidget {
+  const CustomClipRRect(
+      {super.key,
+      required this.imageNetwork,
+      required this.heightImage,
+      required this.widthImage,
+      required this.id,
+      required this.title,
+      required this.ableNavigate});
+
+  final String imageNetwork;
+  final double heightImage;
+  final double widthImage;
+  final String title;
+  final String id;
+  final bool ableNavigate;
+
+  @override
+  Widget build(BuildContext context) {
+    return ableNavigate == true
+        ? GestureDetector(
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => DetailsView(
+                      title: title,
+                      id: id,
+                    ),
+                  ));
+            },
+            child: ClipRRect(
               borderRadius: BorderRadius.circular(4),
               child: Image.network(
                 imageNetwork,
@@ -79,6 +132,15 @@ class MovieItemWidget extends StatelessWidget {
                 fit: BoxFit.cover,
               ),
             ),
-    );
+          )
+        : ClipRRect(
+            borderRadius: BorderRadius.circular(4),
+            child: Image.network(
+              imageNetwork,
+              height: heightImage,
+              width: widthImage,
+              fit: BoxFit.cover,
+            ),
+          );
   }
 }
