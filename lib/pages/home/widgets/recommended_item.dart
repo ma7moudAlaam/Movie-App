@@ -28,6 +28,9 @@ class RecommendedItem extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             MovieItemWidget(
+
+              date: results.releaseDate.toString(),
+              originalTitle: results.originalTitle.toString(),
               ableNavigate: true,
               id: results.id.toString(),
               bookmarkVisible: true,

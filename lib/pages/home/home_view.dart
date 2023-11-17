@@ -33,7 +33,6 @@ class _HomeViewState extends State<HomeView> {
       create: (context) => viewModel,
       child: Consumer<HomeProvider>(
         builder: (context, vm, child) {
-
           if (vm.apiSuccess == false) {
             return const Center(
               child: CircularProgressIndicator(),
@@ -53,7 +52,9 @@ class _HomeViewState extends State<HomeView> {
                 SizedBox(
                   height: mediaQuery.height * 0.02,
                 ),
-                RecommendedList(recommendedList: vm.recommendedList,)
+                RecommendedList(
+                  recommendedList: vm.recommendedList,
+                )
               ],
             ),
           );

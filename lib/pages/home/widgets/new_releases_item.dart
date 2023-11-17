@@ -18,6 +18,8 @@ class NewReleasesItem extends StatelessWidget {
           bottom: mediaQuery.height * 0.013,
           right: mediaQuery.width * 0.028),
       child: MovieItemWidget(
+        date: results.releaseDate.toString(),
+          originalTitle: results.originalTitle.toString(),
         ableNavigate: true,
           bookmarkVisible: true,
           id: results.id.toString(),

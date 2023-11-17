@@ -1,11 +1,14 @@
 import 'dart:ffi';
 
 import 'package:flutter/material.dart';
+import 'package:movie/core/network_layer/firestore_utils.dart';
+import 'package:movie/model/watch_list_model/watch_list_model.dart';
+import 'package:movie/pages/watchlist/provider/watchList_provider.dart';
 
 import '../details_view/details_view.dart';
 
 class MovieItemWidget extends StatefulWidget {
-  const MovieItemWidget(
+  MovieItemWidget(
       {super.key,
       required this.bookmarkVisible,
       required this.id,
@@ -13,6 +16,8 @@ class MovieItemWidget extends StatefulWidget {
       required this.heightImage,
       required this.imageNetwork,
       required this.ableNavigate,
+      required this.date,
+      required this.originalTitle,
       required this.widthImage});
 
   final String imageNetwork;
@@ -20,6 +25,8 @@ class MovieItemWidget extends StatefulWidget {
   final double widthImage;
   final String title;
   final String id;
+  final String date;
+  final String originalTitle;
   final bool bookmarkVisible;
   final bool ableNavigate;
 
@@ -28,7 +35,14 @@ class MovieItemWidget extends StatefulWidget {
 }
 
 class _MovieItemWidgetState extends State<MovieItemWidget> {
+  late WatchListProvider viewModel;
+
   bool saved = false;
+
+  @override
+  void initState() {
+    viewModel = WatchListProvider();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +60,17 @@ class _MovieItemWidgetState extends State<MovieItemWidget> {
                   id: widget.id,
                   title: widget.title),
               GestureDetector(
-                onTap: () {
+                onTap: () async {
+                  WatchListModel model = WatchListModel(
+                      image: widget.imageNetwork,
+                      title: widget.title,
+                      date: widget.date,
+                      id: widget.id,
+                      originalTitle: widget.originalTitle);
+                  bool invilade = true;
+
+                  await FireStoreUtils.addDataToFireStore(model);
+
                   setState(() {
                     saved = !saved;
                   });
@@ -58,19 +82,17 @@ class _MovieItemWidgetState extends State<MovieItemWidget> {
                     Stack(
                       alignment: const Alignment(0, -0.5),
                       children: [
-                        Image.asset(
-                          "assets/icons/Icon awesome-bookmark.png",
-                          color: saved == true
-                              ? theme.colorScheme.primary
-                              : Color(0xff514F4F),
-                        ),
+                        Image.asset("assets/icons/Icon awesome-bookmark.png",
+                            color: saved == true
+                                ? theme.colorScheme.primary
+                                : Color(0xff514F4F)),
                         saved == true
-                            ? const Icon(
+                            ? Icon(
                                 Icons.check,
                                 color: Colors.white,
                                 size: 20,
                               )
-                            : const Icon(
+                            : Icon(
                                 Icons.add,
                                 color: Colors.white,
                                 size: 20,
@@ -79,7 +101,7 @@ class _MovieItemWidgetState extends State<MovieItemWidget> {
                     ),
                   ],
                 ),
-              ),
+              )
             ],
           )
         : CustomClipRRect(

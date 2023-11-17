@@ -16,7 +16,7 @@ class NewReleasesList extends StatelessWidget {
     return Container(
       padding: EdgeInsets.only(
         top: mediaQuery.height * 0.01,
-        left: mediaQuery.height * 0.023,
+        left: mediaQuery.width * 0.04,
       ),
       height: mediaQuery.height * 0.215,
       width: mediaQuery.width,

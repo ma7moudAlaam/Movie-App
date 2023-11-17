@@ -27,6 +27,9 @@ class DetailsMovieItem extends StatelessWidget {
       child: Row(
         children: [
           MovieItemWidget(
+
+            date: "",
+            originalTitle:"",
             id: "",
             title: "",
             bookmarkVisible: true,
