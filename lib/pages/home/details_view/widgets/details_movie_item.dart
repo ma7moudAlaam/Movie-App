@@ -11,7 +11,15 @@ class DetailsMovieItem extends StatelessWidget {
       required this.genres,
       required this.imageNetwork,
       required this.description,
+        required this.title,
+        required this.id,
+        required this.originalTitle,
+        required this.date,
       required this.rate});
+final  String originalTitle;
+final  String date;
+final  String title;
+final  String id;
 
   final String imageNetwork;
   final String description;
@@ -28,10 +36,10 @@ class DetailsMovieItem extends StatelessWidget {
         children: [
           MovieItemWidget(
 
-            date: "",
-            originalTitle:"",
-            id: "",
-            title: "",
+            date: date,
+            originalTitle:originalTitle,
+            id: id,
+            title: title,
             bookmarkVisible: true,
             heightImage: mediaQuery.height * 0.230,
             imageNetwork: imageNetwork,

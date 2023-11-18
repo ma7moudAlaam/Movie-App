@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:movie/core/network_layer/firestore_utils.dart';
 import 'package:movie/model/watch_list_model/watch_list_model.dart';

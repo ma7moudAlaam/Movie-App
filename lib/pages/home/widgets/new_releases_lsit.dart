@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:movie/core/network_layer/home_api_manager.dart';
+
 import 'package:movie/model/home_view_mode/new_releases_model.dart';
 import 'package:movie/pages/home/widgets/new_releases_item.dart';
 

@@ -5,7 +5,7 @@ import 'package:movie/core/constants.dart';
 import 'package:movie/pages/home/details_view/widgets/details_movie_item.dart';
 import 'package:movie/pages/home/details_view/widgets/more_like_list.dart';
 import 'package:movie/pages/home/provider/details_provider.dart';
-import 'package:movie/pages/home/provider/home_provider.dart';
+
 import 'package:provider/provider.dart';
 
 class DetailsView extends StatefulWidget {
@@ -25,7 +25,6 @@ class DetailsView extends StatefulWidget {
 
 class _DetailsViewState extends State<DetailsView> {
   late DetailsProvider viewModel;
-  late HomeProvider vo;
 
   @override
   void initState() {
@@ -63,7 +62,7 @@ class _DetailsViewState extends State<DetailsView> {
               }
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly ,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Stack(
                     alignment: Alignment.center,
@@ -107,6 +106,10 @@ class _DetailsViewState extends State<DetailsView> {
                     padding: EdgeInsets.only(
                         left: 15, right: 15, top: mediaQuery.height * 0.01),
                     child: DetailsMovieItem(
+                        id: "",
+                        date: vm.releaseDate.toString(),
+                        title: vm.title.toString(),
+                        originalTitle: vm.title.toString(),
                         genres: vm.genresList,
                         rate: vm.voteAverage!.toDouble(),
                         description: vm.overview.toString(),

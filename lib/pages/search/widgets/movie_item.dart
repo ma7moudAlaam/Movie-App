@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 
 import '../../../core/constants.dart';
-import '../../../models/details_model.dart';
+
+import '../../../models/movie_model.dart';
+import '../../home/widgets/movie_item_widget.dart';
 
 class MovieItem extends StatelessWidget {
-  final DetailsModel model;
+  final MovieModel model;
 
   const MovieItem({
     super.key,
@@ -20,30 +22,15 @@ class MovieItem extends StatelessWidget {
           height: 90,
           child: Row(
             children: [
-              Expanded(
-                child: Container(
-                  height: 90,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(5),
-                    image: DecorationImage(
-                      image: NetworkImage(
-                          '${Constants.imageBaseURL}${model.posterPath}'),
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                  child: Stack(
-                    children: [
-                      Positioned(
-                        top: 0,
-                        left: 0,
-                        child: (model.isFavorite!)
-                            ? Image.asset('assets/images/bookmarked.png')
-                            : Image.asset('assets/images/bookmark.png'),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
+              MovieItemWidget(bookmarkVisible: false,
+                  id: model.id.toString(),
+                  title: model.title.toString(),
+                  heightImage: 90,
+                  imageNetwork: "${Constants.basicImage}${model.posterPath}",
+                  ableNavigate: true,
+                  date: model.releaseDate.toString(),
+                  originalTitle: model.originalTitle.toString(),
+                  widthImage: 140),
               Expanded(
                 flex: 2,
                 child: Padding(
