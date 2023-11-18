@@ -2,9 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:movie/core/network_layer/firestore_utils.dart';
 import 'package:movie/model/watch_list_model/watch_list_model.dart';
-import 'package:movie/pages/home/widgets/movie_item_widget.dart';
+
 import 'package:movie/pages/watchlist/provider/watchList_provider.dart';
-import 'package:provider/provider.dart';
 
 import '../home/details_view/details_view.dart';
 

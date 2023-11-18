@@ -53,14 +53,14 @@ class _SearchViewState extends State<SearchView> {
                               const SizedBox(
                                 height: 8,
                               ),
-                              Expanded(
-                                child: ListView.builder(
-                                  itemBuilder: (context, index) =>
-                                      MovieItem(model: vm.movies[index]),
-                                  itemCount: vm.movies.length,
-                                  padding: EdgeInsets.zero,
-                                ),
-                              ),
+                              // Expanded(
+                              //   child: ListView.builder(
+                              //     itemBuilder: (context, index) =>
+                              //         MovieItem(model: vm.movies[index]),
+                              //     itemCount: vm.movies.length,
+                              //     padding: EdgeInsets.zero,
+                              //   ),
+                              // ),
                             ],
                           ),
                   ),
@@ -73,4 +73,3 @@ class _SearchViewState extends State<SearchView> {
     );
   }
 }
-
