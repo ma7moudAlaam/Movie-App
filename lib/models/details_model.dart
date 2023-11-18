@@ -52,6 +52,8 @@ class DetailsModel {
     );
   }
 
+  get isFavorite => null;
+
   Map<String, dynamic> toFirestore() {
     return {
       'adult': adult,

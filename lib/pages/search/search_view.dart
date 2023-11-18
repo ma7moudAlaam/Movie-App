@@ -3,6 +3,8 @@ import 'package:movie/pages/search/search_view_model.dart';
 import 'package:movie/pages/search/widgets/custom_searcs_widget.dart';
 import 'package:provider/provider.dart';
 
+import '../browse/widgets/movie_item.dart';
+
 class SearchView extends StatefulWidget {
   const SearchView({super.key});
 
@@ -35,7 +37,7 @@ class _SearchViewState extends State<SearchView> {
                               const SizedBox(
                                 height: 200,
                               ),
-                              Image.asset('assets/images/search_body.png'),
+                              Image.asset('assets/images/search_icon.png'),
                               const SizedBox(height: 20),
                               Text(
                                 vm.searchQuery.isEmpty
